@@ -11,5 +11,6 @@ namespace PulseWeb.Data
         }
 
         public DbSet<Goal> Goals { get; set; }
+        public DbSet<ToDoItem> ToDoItems { get; set; }
     }
 }

@@ -1,0 +1,30 @@
+﻿@model ToDoItem
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">New ToDo</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="DueDate"></label>
+            <input type="date" asp-for="DueDate" class="form-control" />
+            <span asp-validation-for="DueDate" class="text-danger"></span>
+        </div>
+        <a asp-controller="ToDo" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back
+        </a>
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+    </div>
+</form>
+
+

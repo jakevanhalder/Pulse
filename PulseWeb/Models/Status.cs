@@ -1,4 +1,6 @@
-﻿namespace PulseWeb.Models
+﻿using System.ComponentModel;
+
+namespace PulseWeb.Models
 {
     public enum Status
     {
