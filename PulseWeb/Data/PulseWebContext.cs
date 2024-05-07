@@ -15,5 +15,6 @@ namespace PulseWeb.Data
         }
 
         public DbSet<PulseWeb.Models.ToDoItem> ToDoItem { get; set; } = default!;
+        public DbSet<PulseWeb.Models.BudgetItem> BudgetItem { get; set; } = default!;
     }
 }

@@ -1,0 +1,73 @@
+﻿@model IEnumerable<BudgetItem>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>Budgets</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Budget" asp-action="Create" class="btn btn-outline-primary">
+                <i class="bi bi-plus-square"></i> &nbsp; New Budget
+            </a>
+        </div>
+    </div>
+    <br />
+    <br />
+
+    <table class="table table-bordered table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>
+                    Category
+                </th>
+                <th>
+                    Budget Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Amount
+                </th>
+                <th>
+                    Due Date
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var obj in Model)
+            {
+                <tr>
+                    <td width="20%">
+                        @obj.Category
+                    </td>
+                    <td width="25%">
+                        @obj.Title
+                    </td>
+                    <td width="10%">
+                        @obj.Description
+                    </td>
+                    <td>
+                        @obj.Amount
+                    </td>
+                    <td width="5%">
+                        @obj.Date
+                    </td>
+                    <td>
+                        <div class="btn-group" role="group">
+                            <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> &nbsp; Edit</a>
+                        </div>
+                        <div class="btn-group" role="group">
+                            <a asp-controller="Budget" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger"><i class="bi bi-pencil-square"></i> &nbsp; Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
