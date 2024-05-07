@@ -10,7 +10,7 @@ namespace PulseWeb.Models
         [Required]
         [DisplayName("Goal Name")]
         public string Title { get; set; }
-        public string Description { get; set; } = "No Description";
+        public string? Description { get; set; } = "No Description";
         [Required]
         [DisplayName("Due Date")]
         public DateTime DueDate { get; set; }
