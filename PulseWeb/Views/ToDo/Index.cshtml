@@ -1,55 +1,50 @@
 ﻿@model IEnumerable<ToDoItem>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
             <h2>ToDo</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="ToDo" asp-action="Create" class="btn btn-outline-primary">
+            <a asp-controller="ToDo" asp-action="Create" class="btn btn-outline-info">
                 <i class="bi bi-plus-square"></i> &nbsp; New Item
             </a>
         </div>
     </div>
     <br />
-    <br />
 
-    <table class="table table-bordered table-striped" style="width:100%">
+    <table class="table table-bordered table-striped align-middle" style="width:100%">
         <thead>
             <tr>
-                <th>
+                <th style="padding: 10px;">
                     ToDo Name
                 </th>
-                <th>
+                <th style="padding: 10px;">
                     Description
                 </th>
-                <th>
+                <th style="padding: 10px;">
                     Due Date
                 </th>
-                <th>
+                <th style="padding: 10px;">
                     Status
                 </th>
-                <th></th>
+                <th style="padding: 10px;"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var obj in Model)
             {
-                <tr>
-                    <td width="20%">
+                <tr class="table-info" style="padding: 10px;">
+                    <td>
                         @obj.Title
                     </td>
-                    <td width="25%">
+                    <td>
                         @obj.Description
                     </td>
-                    <td width="10%">
-                        @obj.DueDate
+                    <td>
+                        @obj.DueDate.ToString("MMM dd, yyyy")
                     </td>
-                    <td width="5%">
+                    <td>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="@obj.Id">
                             <label class="form-check-label" asp-for="@obj.IsDone"></label>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace PulseWeb.Models
 {
@@ -12,6 +13,7 @@ namespace PulseWeb.Models
 
         public string Description { get; set; }
 
+        [DisplayName("")]
         public bool IsDone { get; set; } = false;
 
         [DataType(DataType.Date)]
