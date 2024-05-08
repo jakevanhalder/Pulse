@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="~/PulseWeb.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-<body>
+<body class="bg-default-subtle">
     <header>
-        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+        <nav class="navbar navbar-expand-lg bg-primary-subtle mb-3" data-bs-theme="dark">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Pulse</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,15 @@
                                 <a class="dropdown-item" href="#">Separated link</a>
                             </div>
                         </li> *@
+                        
                     </ul>
+                    <div class="ms-auto">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-light dropdown-toggle" asp-area="" asp-controller="" asp-action="">Profile</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
