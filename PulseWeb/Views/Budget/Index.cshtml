@@ -1,16 +1,12 @@
 ﻿@model IEnumerable<BudgetItem>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
             <h2>Budgets</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="Budget" asp-action="Create" class="btn btn-outline-primary">
+            <a asp-controller="Budget" asp-action="Create" class="btn btn-outline-info">
                 <i class="bi bi-plus-square"></i> &nbsp; New Budget
             </a>
         </div>
@@ -21,49 +17,52 @@
     <table class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr>
-                <th>
+                <th style="padding: 10px;">
                     Category
                 </th>
-                <th>
+                <th style="padding: 10px;">
                     Budget Name
                 </th>
-                <th>
+                <th style="padding: 10px;">
                     Description
                 </th>
-                <th>
+                <th style="padding: 10px;">
                     Amount
                 </th>
-                <th>
+                <th style="padding: 10px;">
                     Due Date
                 </th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var obj in Model)
             {
-                <tr>
-                    <td width="20%">
+                <tr class="table-info" style="padding: 10px;">
+                    <td>
                         @obj.Category
                     </td>
-                    <td width="25%">
+                    <td>
                         @obj.Title
                     </td>
-                    <td width="10%">
+                    <td>
                         @obj.Description
                     </td>
                     <td>
-                        @obj.Amount
+                        $@obj.Amount
                     </td>
-                    <td width="5%">
-                        @obj.Date
+                    <td>
+                        @obj.Date.ToString("MMM dd, yyyy")
                     </td>
                     <td>
                         <div class="btn-group" role="group">
                             <a asp-controller="Budget" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> &nbsp; Edit</a>
                         </div>
+                    </td>
+                    <td>
                         <div class="btn-group" role="group">
-                            <a asp-controller="Budget" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger"><i class="bi bi-pencil-square"></i> &nbsp; Delete</a>
+                            <a asp-controller="Budget" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-outline-danger"><i class="bi bi-trash"></i> &nbsp; Delete</a>
                         </div>
                     </td>
                 </tr>
