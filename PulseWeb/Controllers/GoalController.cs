@@ -1,21 +1,23 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PulseWeb.Data;
 using PulseWeb.Models;
+using PulseWeb.Repository;
+using PulseWeb.Repository.IRepository;
 
 namespace PulseWeb.Controllers
 {
     public class GoalController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IGoalRepository _goalRepository;
 
-        public GoalController(ApplicationDbContext db)
+        public GoalController(IGoalRepository goalRepository)
         {
-            _db = db;
+            _goalRepository = goalRepository;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Goal> objGoalList = _db.Goals;
+            List<Goal> objGoalList = _goalRepository.GetAll().ToList();
             return View(objGoalList);
         }
 
@@ -32,10 +34,9 @@ namespace PulseWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Goals.Add(obj);
-                _db.SaveChanges();
-                TempData["success"] = "Goal created successfully";
-                return RedirectToAction("Index");
+                _goalRepository.Add(obj);
+                _goalRepository.Save();
+                return RedirectToAction(nameof(Index));
             }
             return View(obj);
         }
@@ -47,7 +48,7 @@ namespace PulseWeb.Controllers
             {
                 return NotFound();
             }
-            var goalFromDb = _db.Goals.Find(id);
+            var goalFromDb = _goalRepository.Get(u => u.Id == id);
 
             if (goalFromDb == null)
             {
@@ -64,8 +65,8 @@ namespace PulseWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Goals.Update(obj);
-                _db.SaveChanges();
+                _goalRepository.Add(obj);
+                _goalRepository.Save();
                 TempData["success"] = "Goal updated successfully";
                 return RedirectToAction("Index");
             }
@@ -79,7 +80,7 @@ namespace PulseWeb.Controllers
             {
                 return NotFound();
             }
-            var goalFromDb = _db.Goals.Find(id);
+            var goalFromDb = _goalRepository.Get(u => u.Id == id);
 
             if (goalFromDb == null)
             {
@@ -94,14 +95,14 @@ namespace PulseWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.Goals.Find(id);
+            var obj = _goalRepository.Get(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.Goals.Remove(obj);
-            _db.SaveChanges();
+            _goalRepository.Remove(obj);
+            _goalRepository.Save();
             TempData["success"] = "Goal deleted";
             return RedirectToAction("Index");
         }

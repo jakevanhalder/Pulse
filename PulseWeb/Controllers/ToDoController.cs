@@ -7,73 +7,57 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PulseWeb.Data;
 using PulseWeb.Models;
+using PulseWeb.Repository.IRepository;
 
 namespace PulseWeb.Controllers
 {
     public class ToDoController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IToDoRepository _toDoRepository;
 
-        public ToDoController(ApplicationDbContext context)
+        public ToDoController(IToDoRepository todoRepository)
         {
-            _context = context;
+            _toDoRepository = todoRepository;
         }
 
         // GET: ToDo
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.ToDoItems.ToListAsync());
+            List<ToDoItem> objToDoList = _toDoRepository.GetAll().ToList();
+            return View(objToDoList);
         }
 
-        // GET: ToDo/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var toDoItem = await _context.ToDoItems
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (toDoItem == null)
-            {
-                return NotFound();
-            }
-
-            return View(toDoItem);
-        }
-
-        // GET: ToDo/Create
+        // GET: ToDoItems/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: ToDo/Create
+        // POST: ToDoItems/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Description,IsDone,DueDate")] ToDoItem toDoItem)
+        public IActionResult Create([Bind("Id,Title,Description,IsDone,DueDate")] ToDoItem toDoItem)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(toDoItem);
-                await _context.SaveChangesAsync();
+                _toDoRepository.Add(toDoItem);
+                _toDoRepository.Save();
                 return RedirectToAction(nameof(Index));
             }
             return View(toDoItem);
         }
 
-        // GET: ToDo/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        // GET: ToDoItems/Edit/id
+        public IActionResult Edit(int? id)
         {
-            if (id == null)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
 
-            var toDoItem = await _context.ToDoItems.FindAsync(id);
+            var toDoItem = _toDoRepository.Get(u => u.Id == id);
             if (toDoItem == null)
             {
                 return NotFound();
@@ -81,12 +65,12 @@ namespace PulseWeb.Controllers
             return View(toDoItem);
         }
 
-        // POST: ToDo/Edit/5
+        // POST: ToDoItems/Edit/id
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,IsDone,DueDate")] ToDoItem toDoItem)
+        public IActionResult Edit(int id, [Bind("Id,Title,Description,IsDone,DueDate")] ToDoItem toDoItem)
         {
             if (id != toDoItem.Id)
             {
@@ -95,37 +79,24 @@ namespace PulseWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(toDoItem);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ToDoItemExists(toDoItem.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
+                _toDoRepository.Add(toDoItem);
+                _toDoRepository.Save();
+                TempData["success"] = "ToDo updated successfully";
                 return RedirectToAction(nameof(Index));
             }
             return View(toDoItem);
         }
 
-        // GET: ToDo/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        // GET: ToDoItems/Delete/id
+        public IActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var toDoItem = await _context.ToDoItems
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var toDoItem = _toDoRepository.Get(u => u.Id == id);
+
             if (toDoItem == null)
             {
                 return NotFound();
@@ -134,24 +105,20 @@ namespace PulseWeb.Controllers
             return View(toDoItem);
         }
 
-        // POST: ToDo/Delete/5
+        // POST: ToDoItems/Delete/id
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var toDoItem = await _context.ToDoItems.FindAsync(id);
+            var toDoItem = _toDoRepository.Get(u => u.Id == id);
             if (toDoItem != null)
             {
-                _context.ToDoItems.Remove(toDoItem);
+                _toDoRepository.Remove(toDoItem);
             }
 
-            await _context.SaveChangesAsync();
+            _toDoRepository.Save();
+            TempData["success"] = "ToDo deleted";
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool ToDoItemExists(int id)
-        {
-            return _context.ToDoItems.Any(e => e.Id == id);
         }
     }
 }
