@@ -51,8 +51,10 @@
                         </div>
                     </td>
                     <td>
-                        <div class="btn-group" role="group">
-                            <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> &nbsp; Edit</a>
+                        <button id="btnGroupDrop2" type="button" class="btn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop2" style="">
+                            <a asp-controller="ToDo" asp-action="Edit" asp-route-id="@obj.Id" class="dropdown-item text-info"><i class="bi bi-pencil-square"></i> &nbsp; Edit</a>
+                            <a asp-controller="ToDo" asp-action="Delete" asp-route-id="@obj.Id" class="dropdown-item text-danger"><i class="bi bi-trash"></i> &nbsp; Delete</a>
                         </div>
                     </td>
                 </tr>
