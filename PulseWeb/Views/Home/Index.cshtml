@@ -1,4 +1,4 @@
-﻿
+﻿@model HomeViewModel
 
 <div class="container-fluid">
     <h1 class="p-2">Dashboard</h1>
@@ -18,9 +18,28 @@
             <!-- Budget -->
             <div class="card text-black bg-dark-subtle mb-4">
                 <div class="card-body">
-                    <h4 class="card-title">Budget</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h4 class="card-title">Budgets</h4>                    
+                        @foreach (var budget in Model.BudgetItems)
+                        {
+                            <div class="card text-black bg-info-subtle mb-4 p-3">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-text">Category: @budget.Category</p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="card-text">Name: @budget.Title</p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="card-text">Amount: $@budget.Amount</p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="card-text">Date: @budget.Date.ToShortDateString()</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                             
+                        }                                                           
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
                 </div>
@@ -31,8 +50,28 @@
                     <div class="card text-black bg-dark-subtle mb-4">
                         <div class="card-body">
                             <h4 class="card-title">Goals</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            @foreach (var goal in Model.Goals)
+                            {
+                                <div class="card text-black bg-info-subtle mb-4 p-3">
+                                    <div class="container">
+                                        <div class="row">                                         
+                                            <div class="col">
+                                                <p class="card-text">Name: @goal.Title</p>
+                                            </div>                                            
+                                            <div class="col">
+                                                <p class="card-text">Date: @goal.DueDate.ToShortDateString()</p>
+                                            </div>
+                                            <div class="w-100 m-1"></div>
+                                            <div class="col">
+                                                <p class="card-text">Priority: @goal.Priority</p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="card-text">Status: @goal.Status</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
                             <a href="#" class="card-link">Card link</a>
                             <a href="#" class="card-link">Another link</a>
                         </div>
@@ -41,10 +80,25 @@
                 <div class="col-md-6">
                     <div class="card text-black bg-dark-subtle mb-4">
                         <div class="card-body">
-                            <h4 class="card-title">Tasks</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
+                            <h4 class="card-title">ToDo</h4>
+                            @foreach (var toDo in Model.ToDoItems)
+                            {
+                                <div class="card text-black bg-info-subtle mb-4 p-3">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <p class="card-text">Name: @toDo.Title</p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="card-text">Date: @toDo.DueDate.ToShortDateString()</p>
+                                            </div>                                           
+                                            @* <div class="col">
+                                                <p class="card-text">Priority: @toDo.IsDone</p>
+                                            </div>    *@                                         
+                                        </div>
+                                    </div>
+                                </div>
+                            }                            <a href="#" class="card-link">Card link</a>
                             <a href="#" class="card-link">Another link</a>
                         </div>
                     </div>
