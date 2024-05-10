@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using PulseWeb.Models;
+using PulseWeb.Repository;
 using PulseWeb.Repository.IRepository;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace PulseWeb.Controllers
 {
@@ -11,13 +13,15 @@ namespace PulseWeb.Controllers
         private readonly IGoalRepository _goalRepository;
         private readonly IToDoRepository _toDoRepository;
         private readonly IBudgetRepository _budgetRepository;
+        private readonly CalendarManager _calendarManager;
 
-        public HomeController(ILogger<HomeController> logger, IGoalRepository goalRepository, IToDoRepository toDoRepository, IBudgetRepository budgetRepository)
+        public HomeController(ILogger<HomeController> logger, IGoalRepository goalRepository, IToDoRepository toDoRepository, IBudgetRepository budgetRepository, CalendarManager calendarManager)
         {
             _logger = logger;
             _goalRepository = goalRepository;
             _toDoRepository = toDoRepository;
             _budgetRepository = budgetRepository;
+            _calendarManager = calendarManager;
         }
 
         public IActionResult Index()
@@ -27,15 +31,33 @@ namespace PulseWeb.Controllers
             var toDo = _toDoRepository.GetAll();
             var budget = _budgetRepository.GetAll();
 
+            // calendar
+            var calendar = _calendarManager.GetCalender(DateTime.Now.Month, DateTime.Now.Year);
+
             // Create a view model to hold the data
             var viewModel = new HomeViewModel
             {
                 Goals = goals,
                 ToDoItems = toDo,
-                BudgetItems = budget
+                BudgetItems = budget,
+                Calendar = calendar
             };
 
             return View(viewModel);
+        }
+
+        //for ajax request
+        public ActionResult AsyncUpdateCalender(int month, int year)
+        {
+            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
+            {
+                var calendar = _calendarManager.GetCalender(month, year);
+                return Json(calendar);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Privacy()

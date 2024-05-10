@@ -109,10 +109,49 @@
         <div class="col-lg-3">
             <!-- Calendar -->
             <div class="card text-black bg-dark-subtle mb-4 h-100">
-                <div class="card-header">Calendar</div>
                 <div class="card-body">
-                    <h4 class="card-title">Primary card title</h4>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h4 class="card-title">Calendar</h4>
+                    <div class="container h-100">
+                        <div class="row h-100">
+                            <div class="col">
+                                <a id="Model.Calendar.prevMonth" class="month" style="float:left;margin-left:5px;">Prev</a>
+                            </div>
+                            <div class="col">
+                                @DateTime.Now.ToString("MMM") @DateTime.Now.Year
+                            </div>
+                            <div class="col">
+                                <a id="@Model.Calendar.nextMonth" class="month" style="float:right;margin-right:5px;">Next</a>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <p>Sunday</p>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <p>Monday</p>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <p>Tuesday</p>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <p>Wednesday</p>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <p>Thursday</p>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <p>Friday</p>
+                            </div>
+                            <div class="w-100"></div>
+                            <div class="col">
+                                <p>Saturday</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
