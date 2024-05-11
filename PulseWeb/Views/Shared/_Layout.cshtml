@@ -19,7 +19,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor01">
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -44,10 +44,17 @@
                         </li> *@
                         
                     </ul>
-                    <div class="ms-auto">
+                    <div class="">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link text-light dropdown-toggle" asp-area="" asp-controller="" asp-action="">Profile</a>
+                            <li class="nav-item dropdown">
+                                <div class="ms-auto">
+                                    <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
+                                    <div class="dropdown-menu">
+                                        <a asp-controller="Account" asp-action="Index" class="dropdown-item">Account</a>
+                                        <a asp-controller="Account" asp-action="Settings" class="dropdown-item">Settings</a>
+                                    </div>
+                                </div>
+                                
                             </li>
                         </ul>
                     </div>
