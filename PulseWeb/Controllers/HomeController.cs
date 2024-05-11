@@ -32,9 +32,9 @@ namespace PulseWeb.Controllers
             DateTime saturday = sunday.AddDays(6);
 
             // Retrieve upcoming goals, todos, and budgets for the current week
-            var upcomingGoals = _goalRepository.GetAll().Where(g => g.DueDate >= today && g.DueDate <= saturday);
-            var upcomingTodos = _toDoRepository.GetAll().Where(t => t.DueDate >= today && t.DueDate <= saturday);
-            var upcomingBudgets = _budgetRepository.GetAll().Where(b => b.Date >= today && b.Date <= saturday);
+            var upcomingGoals = _goalRepository.GetAll().Where(g => g.DueDate >= sunday && g.DueDate <= saturday);
+            var upcomingTodos = _toDoRepository.GetAll().Where(t => t.DueDate >= sunday && t.DueDate <= saturday);
+            var upcomingBudgets = _budgetRepository.GetAll().Where(b => b.Date >= sunday && b.Date <= saturday);
 
             // Map the data to UpcomingItem objects
             var upcomingItems = new List<UpcomingItem>();
