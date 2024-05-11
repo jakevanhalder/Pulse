@@ -23,5 +23,10 @@ namespace PulseWeb.Repository
         {
             _db.Goals.Update(goal);
         }
+
+        public IEnumerable<Goal> GetGoalsInDateRange(DateTime startDate, DateTime endDate)
+        {
+            return _db.Goals.Where(g => g.DueDate >= startDate && g.DueDate <= endDate).ToList();
+        }
     }
 }

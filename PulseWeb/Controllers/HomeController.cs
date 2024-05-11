@@ -13,26 +13,39 @@ namespace PulseWeb.Controllers
         private readonly IGoalRepository _goalRepository;
         private readonly IToDoRepository _toDoRepository;
         private readonly IBudgetRepository _budgetRepository;
-        private readonly CalendarManager _calendarManager;
 
-        public HomeController(ILogger<HomeController> logger, IGoalRepository goalRepository, IToDoRepository toDoRepository, IBudgetRepository budgetRepository, CalendarManager calendarManager)
+        public HomeController(ILogger<HomeController> logger, IGoalRepository goalRepository, IToDoRepository toDoRepository, IBudgetRepository budgetRepository)
         {
             _logger = logger;
             _goalRepository = goalRepository;
             _toDoRepository = toDoRepository;
             _budgetRepository = budgetRepository;
-            _calendarManager = calendarManager;
         }
 
         public IActionResult Index()
         {
+            // Get today's date
+            DateTime today = DateTime.Today;
+
+            // Calculate the start and end dates of the current week (Sunday to Monday)
+            DateTime sunday = today.AddDays(-(int)today.DayOfWeek);      
+            DateTime saturday = sunday.AddDays(6);
+
+            // Retrieve upcoming goals, todos, and budgets for the current week
+            var upcomingGoals = _goalRepository.GetAll().Where(g => g.DueDate >= today && g.DueDate <= saturday);
+            var upcomingTodos = _toDoRepository.GetAll().Where(t => t.DueDate >= today && t.DueDate <= saturday);
+            var upcomingBudgets = _budgetRepository.GetAll().Where(b => b.Date >= today && b.Date <= saturday);
+
+            // Map the data to UpcomingItem objects
+            var upcomingItems = new List<UpcomingItem>();
+            upcomingItems.AddRange(upcomingGoals.Select(g => new UpcomingItem { Type = "Goal", Name = g.Title, DueDate = g.DueDate }));
+            upcomingItems.AddRange(upcomingTodos.Select(t => new UpcomingItem { Type = "ToDo", Name = t.Title, DueDate = t.DueDate }));
+            upcomingItems.AddRange(upcomingBudgets.Select(b => new UpcomingItem { Type = "Budget", Name = b.Title, DueDate = b.Date }));
+
             // Fetch data from repositories
             var goals = _goalRepository.GetAll();
             var toDo = _toDoRepository.GetAll();
             var budget = _budgetRepository.GetAll();
-
-            // calendar
-            var calendar = _calendarManager.GetCalender(DateTime.Now.Month, DateTime.Now.Year);
 
             // Create a view model to hold the data
             var viewModel = new HomeViewModel
@@ -40,24 +53,10 @@ namespace PulseWeb.Controllers
                 Goals = goals,
                 ToDoItems = toDo,
                 BudgetItems = budget,
-                Calendar = calendar
+                UpcomingItems = upcomingItems
             };
 
             return View(viewModel);
-        }
-
-        //for ajax request
-        public ActionResult AsyncUpdateCalender(int month, int year)
-        {
-            if (Request.Headers["X-Requested-With"] == "XMLHttpRequest")
-            {
-                var calendar = _calendarManager.GetCalender(month, year);
-                return Json(calendar);
-            }
-            else
-            {
-                return View();
-            }
         }
 
         public IActionResult Privacy()

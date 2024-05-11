@@ -17,7 +17,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddScoped<IGoalRepository, GoalRepository>();
 builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
 builder.Services.AddScoped<IBudgetRepository, BudgetRepository>();
-builder.Services.AddScoped<CalendarManager, CalendarManager>();
 
 var app = builder.Build();
 

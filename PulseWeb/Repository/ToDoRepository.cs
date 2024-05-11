@@ -15,7 +15,7 @@ namespace PulseWeb.Repository
 
         public void Save()
         {
-            _db.SaveChanges();
+            _db.SaveChangesAsync();
         }
 
         public void Update(ToDoItem todo)

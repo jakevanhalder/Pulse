@@ -114,42 +114,21 @@
                     <div class="container h-100">
                         <div class="row h-100">
                             <div class="col">
-                                <a id="Model.Calendar.prevMonth" class="month" style="float:left;margin-left:5px;">Prev</a>
-                            </div>
-                            <div class="col">
                                 @DateTime.Now.ToString("MMM") @DateTime.Now.Year
                             </div>
-                            <div class="col">
-                                <a id="@Model.Calendar.nextMonth" class="month" style="float:right;margin-right:5px;">Next</a>
-                            </div>
                             <div class="w-100"></div>
-                            <div class="col">
-                                <p>Sunday</p>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col">
-                                <p>Monday</p>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col">
-                                <p>Tuesday</p>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col">
-                                <p>Wednesday</p>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col">
-                                <p>Thursday</p>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col">
-                                <p>Friday</p>
-                            </div>
-                            <div class="w-100"></div>
-                            <div class="col">
-                                <p>Saturday</p>
-                            </div>
+                            @foreach (var day in Enumerable.Range(0, 7))
+                            {
+                                DateTime currentDate = DateTime.Today.AddDays(day - (int)DateTime.Today.DayOfWeek);
+                                <div class="col">
+                                    <p>@currentDate.ToString("dddd")</p>
+                                    @foreach (var item in Model.UpcomingItems.Where(i => i.DueDate.Date == currentDate.Date))
+                                    {
+                                        <p>@item.Name - @item.DueDate.ToShortTimeString()</p>
+                                    }
+                                </div>
+                                <div class="w-100"></div>
+                            }
                         </div>
                     </div>
                 </div>

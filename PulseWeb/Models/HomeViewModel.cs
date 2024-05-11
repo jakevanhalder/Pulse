@@ -5,6 +5,6 @@
         public IEnumerable<Goal>? Goals { get; set; }
         public IEnumerable<ToDoItem>? ToDoItems { get; set; }
         public IEnumerable<BudgetItem>? BudgetItems { get; set; }
-        public WeekForMonth Calendar { get; set; }
+        public IEnumerable<UpcomingItem>? UpcomingItems { get; set; }
     }
 }

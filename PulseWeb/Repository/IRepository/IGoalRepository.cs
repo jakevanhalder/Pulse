@@ -6,5 +6,6 @@ namespace PulseWeb.Repository.IRepository
     {
         void Update(Goal goal);
         void Save();
+        IEnumerable<Goal> GetGoalsInDateRange(DateTime startDate, DateTime endDate);
     }
 }
