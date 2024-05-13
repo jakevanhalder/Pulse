@@ -26,6 +26,9 @@
                     Due Date
                 </th>
                 <th style="padding: 10px;">
+                    Due At
+                </th>
+                <th style="padding: 10px;">
                     Priority
                 </th>
                 <th style="padding: 10px;">
@@ -46,6 +49,9 @@
                     </td>
                     <td>
                         @obj.DueDate.ToString("MMM dd, yyyy")
+                    </td>
+                    <td>
+                        @obj.DueTime.ToString("hh:mm tt")
                     </td>
                     <td>
                         @obj.Priority

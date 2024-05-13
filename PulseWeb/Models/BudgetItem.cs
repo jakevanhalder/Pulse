@@ -6,6 +6,7 @@ namespace PulseWeb.Models
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
         public string Category { get; set; }
 
@@ -18,7 +19,11 @@ namespace PulseWeb.Models
         [DataType(DataType.Currency)]
         public decimal Amount { get; set; }
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
+
+        [Required]
+        public DateTime Time { get; set; }  
     }
 }

@@ -12,8 +12,8 @@ using PulseWeb.Data;
 namespace PulseWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240511181615_Initial")]
-    partial class Initial
+    [Migration("20240513045117_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,6 +46,9 @@ namespace PulseWeb.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -67,6 +70,9 @@ namespace PulseWeb.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DueTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Priority")
@@ -97,6 +103,9 @@ namespace PulseWeb.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DueTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDone")

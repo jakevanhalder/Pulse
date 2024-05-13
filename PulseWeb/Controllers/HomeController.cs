@@ -38,9 +38,9 @@ namespace PulseWeb.Controllers
 
             // Map the data to UpcomingItem objects
             var upcomingItems = new List<UpcomingItem>();
-            upcomingItems.AddRange(upcomingGoals.Select(g => new UpcomingItem { Type = "Goal", Name = g.Title, DueDate = g.DueDate }));
-            upcomingItems.AddRange(upcomingTodos.Select(t => new UpcomingItem { Type = "ToDo", Name = t.Title, DueDate = t.DueDate }));
-            upcomingItems.AddRange(upcomingBudgets.Select(b => new UpcomingItem { Type = "Budget", Name = b.Title, DueDate = b.Date }));
+            upcomingItems.AddRange(upcomingGoals.Select(g => new UpcomingItem { Type = "Goal", Name = g.Title, DueTime = g.DueTime, DueDate = g.DueDate }));
+            upcomingItems.AddRange(upcomingTodos.Select(t => new UpcomingItem { Type = "ToDo", Name = t.Title, DueTime = t.DueTime, DueDate = t.DueDate }));
+            upcomingItems.AddRange(upcomingBudgets.Select(b => new UpcomingItem { Type = "Budget", Name = b.Title, DueTime = b.Time, DueDate = b.Date }));
 
             // Fetch data from repositories
             var goals = _goalRepository.GetAll();

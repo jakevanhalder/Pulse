@@ -29,6 +29,9 @@
                     Amount
                 </th>
                 <th style="padding: 10px;">
+                    Due At
+                </th>
+                <th style="padding: 10px;">
                     Due Date
                 </th>
                 <th></th>
@@ -50,6 +53,9 @@
                     </td>
                     <td>
                         $@obj.Amount
+                    </td>
+                    <td>
+                        @obj.Time.ToString("hh:mm tt")
                     </td>
                     <td>
                         @obj.Date.ToString("MMM dd, yyyy")

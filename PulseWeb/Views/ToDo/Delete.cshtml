@@ -17,6 +17,11 @@
             <input asp-for="Description" disabled class="form-control" />
         </div>
         <div class="mb-3">
+            <label asp-for="DueTime"></label>
+            <input type="time" asp-for="DueTime" disabled class="form-control" />
+            <span asp-validation-for="DueTime" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
             <label asp-for="DueDate"></label>
             <input type="date" asp-for="DueDate" disabled class="form-control" />
             <span asp-validation-for="DueDate" class="text-danger"></span>

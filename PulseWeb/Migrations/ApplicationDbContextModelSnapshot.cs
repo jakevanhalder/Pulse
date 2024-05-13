@@ -43,6 +43,9 @@ namespace PulseWeb.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -64,6 +67,9 @@ namespace PulseWeb.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DueTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Priority")
@@ -94,6 +100,9 @@ namespace PulseWeb.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DueTime")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsDone")

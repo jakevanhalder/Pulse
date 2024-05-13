@@ -16,7 +16,11 @@ namespace PulseWeb.Models
         [DisplayName("")]
         public bool IsDone { get; set; } = false;
 
+        [Required]
         [DataType(DataType.Date)]
         public DateTime DueDate { get; set; }
+
+        [Required]
+        public DateTime DueTime { get; set; }
     }
 }

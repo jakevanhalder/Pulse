@@ -23,6 +23,9 @@
                     Description
                 </th>
                 <th style="padding: 10px;">
+                    Due At
+                </th>
+                <th style="padding: 10px;">
                     Due Date
                 </th>
                 <th style="padding: 10px;">
@@ -40,6 +43,9 @@
                     </td>
                     <td>
                         @obj.Description
+                    </td>
+                    <td>
+                        @obj.DueTime.ToString("hh:mm tt")
                     </td>
                     <td>
                         @obj.DueDate.ToString("MMM dd, yyyy")

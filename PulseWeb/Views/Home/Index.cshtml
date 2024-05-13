@@ -114,11 +114,16 @@
             <!-- Calendar -->
             <div class="card text-black bg-dark-subtle mb-4 h-100">
                 <div class="card-body">
-                    <h4 class="card-title">Calendar</h4>
+                    <h4 class="card-title text-center">Upcoming</h4>
                     <div class="container h-100">
                         <div class="row h-100">
-                            <div class="col">
-                                @DateTime.Now.ToString("MMM") @DateTime.Now.Year
+                            <div class="col align-content-center text-center">
+                                @{
+                                    // Calculate the start and end of the current week
+                                    DateTime startOfWeek = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);
+                                    DateTime endOfWeek = startOfWeek.AddDays(6);
+                                }
+                                @startOfWeek.ToString("MMM d") - @endOfWeek.ToString("MMM d, yyyy")
                             </div>
                             <div class="w-100"></div>
                             @foreach (var day in Enumerable.Range(0, 7))
@@ -128,7 +133,7 @@
                                     <p>@currentDate.ToString("dddd")</p>
                                     @foreach (var item in Model.UpcomingItems.Where(i => i.DueDate.Date == currentDate.Date))
                                     {
-                                        <p>@item.Name - @item.DueDate.ToShortTimeString()</p>
+                                        <p>@item.Name - @item.DueTime.ToString("hh:mm tt")</p>
                                     }
                                 </div>
                                 <div class="w-100"></div>
