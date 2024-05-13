@@ -79,7 +79,7 @@ namespace PulseWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                _budgetRepository.Add(budgetItem);
+                _budgetRepository.Update(budgetItem);
                 _budgetRepository.Save();
                 TempData["success"] = "Budget updated successfully";
                 return RedirectToAction(nameof(Index));

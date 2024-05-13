@@ -65,7 +65,7 @@ namespace PulseWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _goalRepository.Add(obj);
+                _goalRepository.Update(obj);
                 _goalRepository.Save();
                 TempData["success"] = "Goal updated successfully";
                 return RedirectToAction("Index");

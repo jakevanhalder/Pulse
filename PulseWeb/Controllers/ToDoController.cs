@@ -79,7 +79,7 @@ namespace PulseWeb.Controllers
 
             if (ModelState.IsValid)
             {
-                _toDoRepository.Add(toDoItem);
+                _toDoRepository.Update(toDoItem);
                 _toDoRepository.Save();
                 TempData["success"] = "ToDo updated successfully";
                 return RedirectToAction(nameof(Index));
