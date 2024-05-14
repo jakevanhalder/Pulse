@@ -2,7 +2,7 @@
 
 <form method="post" asp-action="Delete">
     <input asp-for="Id" hidden />
-    <div class="border p-3 mt-4">
+    <div class="border p-3 mt-4 bg-primary-subtle">
         <div class="row pb-2">
             <h2 class="text-primary">Delete Budget</h2>
             <hr />
@@ -39,7 +39,7 @@
         <a asp-controller="Budget" asp-action="Index" class="btn btn-secondary" style="width:150px">
             Back
         </a>
-        <button type="submit" class="btn btn-outline-danger" style="width:150px">Delete</button>
+        <button type="submit" class="btn btn-outline-danger btn-danger text-white fw-bold" style="width:150px">Delete</button>
     </div>
 </form>
 

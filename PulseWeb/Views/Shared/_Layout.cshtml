@@ -32,33 +32,17 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Budget" asp-action="Index">Budgeting</a>
                         </li>
-                        @* <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <li class="nav-item dropdown" data-bs-theme="light">
+                            <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
+                                <a asp-controller="Account" asp-action="Index" class="dropdown-item">Account</a>
+                                <a asp-controller="Account" asp-action="Settings" class="dropdown-item">Settings</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Separated link</a>
+                                <a asp-controller="Account" asp-action="Logout" class="dropdown-item text-danger">Logout</a>
                             </div>
-                        </li> *@
+                        </li>
                         
                     </ul>
-                    <div>
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown">
-                                <div class="ms-auto">
-                                    <a class="nav-link dropdown-toggle text-light" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
-                                    <div class="dropdown-menu">
-                                        <a asp-controller="Account" asp-action="Index" class="dropdown-item">Account</a>
-                                        <a asp-controller="Account" asp-action="Settings" class="dropdown-item">Settings</a>
-                                        <a asp-controller="Account" asp-action="Logout" class="dropdown-item text-danger">Logout</a>
-                                    </div>
-                                </div>                            
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div>
         </nav>
     </header>

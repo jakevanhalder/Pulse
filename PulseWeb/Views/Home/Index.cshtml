@@ -3,7 +3,7 @@
 <div class="container p-3">
     <div class="row pt-4">
         <div class="col-6">
-            <h1>Dashboard</h1>
+            <h1 class="text-primary-subtle fw-bold">Dashboard</h1>
         </div>
     </div>
     <br />
@@ -12,7 +12,7 @@
         <!-- First column -->
         <div class="col-lg-9 h-100">
             <!-- Progress -->
-            <div class="card text-black bg-dark-subtle mb-4">
+            <div class="card text-black bg-info-subtle mb-4">
                 <div class="card-body">
                     <h4 class="card-title">Progress</h4>
                     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
@@ -22,12 +22,12 @@
                 </div>
             </div>
             <!-- Budget -->
-            <div class="card text-black bg-dark-subtle mb-4">
+            <div class="card text-black bg-info-subtle mb-4">
                 <div class="card-body">
                     <h4 class="card-title">Budgets</h4>                    
                         @foreach (var budget in Model.BudgetItems)
                         {
-                            <div class="card text-black bg-info-subtle mb-4 p-3">
+                            <div class="card text-black bg-info mb-4 p-3">
                                 <div class="container">
                                     <div class="row">
                                         <div class="col">
@@ -54,7 +54,7 @@
             <!-- Goals and Tasks -->
             <div class="row gx-4">
                 <div class="col-md-6">
-                    <div class="card text-black bg-dark-subtle mb-4">
+                    <div class="card text-black bg-info-subtle mb-4">
                         <div class="card-body">
                             <h4 class="card-title">Goals</h4>
                             @foreach (var goal in Model.Goals)
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="card text-black bg-dark-subtle mb-4">
+                    <div class="card text-black bg-info-subtle mb-4">
                         <div class="card-body">
                             <h4 class="card-title">ToDo</h4>
                             @foreach (var toDo in Model.ToDoItems)
@@ -118,7 +118,7 @@
         <!-- Second column -->
         <div class="col-lg-3">
             <!-- Calendar -->
-            <div class="card text-black bg-dark-subtle mb-4 h-100">
+            <div class="card text-black bg-info-subtle mb-4 h-100">
                 <div class="card-body">
                     <h4 class="card-title text-center">Upcoming</h4>
                     <div class="container h-100">
