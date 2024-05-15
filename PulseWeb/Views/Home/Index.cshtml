@@ -11,21 +11,58 @@
     <div class="row gx-4 gy-4">
         <!-- First column -->
         <div class="col-lg-9 h-100">
-            <!-- Progress -->
-            <div class="card text-black bg-info-subtle mb-4">
-                <div class="card-body">
-                    <h4 class="card-title">Progress</h4>
-                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
+            <!-- Progress Overview -->
+            <div class="card text-black bg-light mb-4" style="height:350px;">
+                <div class="card-body bg-info-subtle d-flex flex-column">
+                    <div class="row">
+                        <div class="col">
+                            <h4 class="card-title">Overview</h4>
+                        </div>
+                        <div class="col">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" id="viewDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Select View
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="viewDropdown">
+                                    <li><a class="dropdown-item" href="#" onclick="showView('overview')">Overview</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="showView('goals')">Goals</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="showView('budgets')">Budgets</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="showView('todos')">ToDo</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h6>Goals</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: @Model.GoalsProgress%" aria-valuenow="@Model.GoalsProgress" aria-valuemin="0" aria-valuemax="100">@Model.GoalsProgress%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>ToDos</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-info" role="progressbar" style="width: @Model.ToDosProgress%" aria-valuenow="@Model.ToDosProgress" aria-valuemin="0" aria-valuemax="100">@Model.ToDosProgress%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Budgets</h6>
+                            <div class="progress mb-2">
+                                <div class="progress-bar bg-warning" role="progressbar" style="width: @Model.BudgetsProgress%" aria-valuenow="@Model.BudgetsProgress" aria-valuemin="0" aria-valuemax="100">@Model.BudgetsProgress%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <a href="#" class="card-link">View Details</a>
+                    </div>
                 </div>
             </div>
             <!-- Budget -->
-            <div class="card text-black bg-info-subtle mb-4">
-                <div class="card-body">
-                    <h4 class="card-title">Budgets</h4>                    
-                        @foreach (var budget in Model.BudgetItems)
+            <div class="card text-black bg-info-subtle mb-4" style="height:350px;">
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Budgets</h4>
+                    <div style="max-height: 200px; overflow-y: auto;">
+                        @foreach (var budget in Model.BudgetItems.Take(3))
                         {
                             <div class="card text-black bg-info mb-4 p-3">
                                 <div class="container">
@@ -44,73 +81,76 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>                             
+                            </div>
                         }
-                    <a asp-controller="Budget" asp-action="Index" class="card-link">
-                        Go To Budgets
-                    </a>
-                </div>
-            </div>
-            <!-- Goals and Tasks -->
-            <div class="row gx-4">
-                <div class="col-md-6">
-                    <div class="card text-black bg-info-subtle mb-4">
-                        <div class="card-body">
-                            <h4 class="card-title">Goals</h4>
-                            @foreach (var goal in Model.Goals)
-                            {
-                                <div class="card text-black bg-info-subtle mb-4 p-3">
-                                    <div class="container">
-                                        <div class="row">                                         
-                                            <div class="col">
-                                                <p class="card-text">Name: @goal.Title</p>
-                                            </div>                                            
-                                            <div class="col">
-                                                <p class="card-text">Date: @goal.DueDate.ToShortDateString()</p>
-                                            </div>
-                                            <div class="w-100 m-1"></div>
-                                            <div class="col">
-                                                <p class="card-text">Priority: @goal.Priority</p>
-                                            </div>
-                                            <div class="col">
-                                                <p class="card-text">Status: @goal.Status</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                            <a asp-controller="Goal" asp-action="Index" class="card-link">
-                                Go To Goals
-                            </a>
-                        </div>
+                    </div>
+                    <div class="mt-auto">
+                        <a asp-controller="Budget" asp-action="Index" class="card-link">
+                            Go To Budgets
+                        </a>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="card text-black bg-info-subtle mb-4">
-                        <div class="card-body">
-                            <h4 class="card-title">ToDo</h4>
-                            @foreach (var toDo in Model.ToDoItems)
-                            {
-                                <div class="card text-black bg-info-subtle mb-4 p-3">
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="card-text">Name: @toDo.Title</p>
-                                            </div>
-                                            <div class="col">
-                                                <p class="card-text">Date: @toDo.DueDate.ToShortDateString()</p>
-                                            </div>                                           
-                                            @* <div class="col">
-                                                <p class="card-text">Priority: @toDo.IsDone</p>
-                                            </div>    *@                                         
+            </div>
+            <!-- Goals -->
+            <div class="card text-black bg-info-subtle mb-4" style="height:350px;">
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">Goals</h4>
+                    <div style="max-height: 200px; overflow-y: auto;">
+                        @foreach (var goal in Model.Goals.Take(3))
+                        {
+                            <div class="card text-black bg-info-subtle mb-4 p-3">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-text">Name: @goal.Title</p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="card-text">Date: @goal.DueDate.ToShortDateString()</p>
+                                        </div>
+                                        <div class="w-100 m-1"></div>
+                                        <div class="col">
+                                            <p class="card-text">Priority: @goal.Priority</p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="card-text">Status: @goal.Status</p>
                                         </div>
                                     </div>
                                 </div>
-                            }
-                            <a asp-controller="ToDo" asp-action="Index" class="card-link">
-                                Go To ToDos
-                            </a>
-                        </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="mt-auto">
+                        <a asp-controller="Goal" asp-action="Index" class="card-link">
+                            Go To Goals
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- ToDo -->
+            <div class="card text-black bg-info-subtle mb-4" style="height:350px;">
+                <div class="card-body d-flex flex-column">
+                    <h4 class="card-title">ToDo</h4>
+                    <div style="max-height: 200px; overflow-y: auto;">
+                        @foreach (var toDo in Model.ToDoItems.Take(3))
+                        {
+                            <div class="card text-black bg-info-subtle mb-4 p-3">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="card-text">Name: @toDo.Title</p>
+                                        </div>
+                                        <div class="col">
+                                            <p class="card-text">Date: @toDo.DueDate.ToShortDateString()</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="mt-auto">
+                        <a asp-controller="ToDo" asp-action="Index" class="card-link">
+                            Go To ToDos
+                        </a>
                     </div>
                 </div>
             </div>

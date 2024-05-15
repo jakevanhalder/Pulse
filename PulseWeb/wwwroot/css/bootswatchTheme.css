@@ -2244,11 +2244,11 @@ progress {
 }
 
 .table-info {
-    --bs-table-color: #fff;
-    --bs-table-bg: #5bc0de;
+    --bs-table-color: #000;
+    --bs-table-bg: #dee0fd;
     --bs-table-border-color: #7ccde5;
     --bs-table-striped-bg: #63c3e0;
-    --bs-table-striped-color: #fff;
+    --bs-table-striped-color: #000;
     --bs-table-active-bg: #6bc6e1;
     --bs-table-active-color: #fff;
     --bs-table-hover-bg: #67c5e0;
