@@ -14,7 +14,7 @@ namespace PulseWeb.Models
         public string Description { get; set; }
 
         [DisplayName("")]
-        public bool IsDone { get; set; } = false;
+        public Status Status { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

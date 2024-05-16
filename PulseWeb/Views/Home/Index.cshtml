@@ -12,57 +12,52 @@
         <!-- First column -->
         <div class="col-lg-9 h-100">
             <!-- Progress Overview -->
-            <div class="card text-black bg-light mb-4" style="height:350px;">
-                <div class="card-body bg-info-subtle d-flex flex-column">
+            <div class="card text-black bg-light mb-4 rounded-4 shadow" style="height:350px;">
+                <div class="card-body bg-info-subtle d-flex flex-column rounded-4">
                     <div class="row">
                         <div class="col">
-                            <h4 class="card-title">Overview</h4>
+                            <h4 class="card-title fw-bold">Overview</h4>
                         </div>
                         <div class="col">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle" type="button" id="viewDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Select View
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="viewDropdown">
-                                    <li><a class="dropdown-item" href="#" onclick="showView('overview')">Overview</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="showView('goals')">Goals</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="showView('budgets')">Budgets</a></li>
-                                    <li><a class="dropdown-item" href="#" onclick="showView('todos')">ToDo</a></li>
-                                </ul>
+                            <div class="float-end">
+                                <div class="dropdown">
+                                    <button class="btn btn-primary dropdown-toggle" type="button" id="viewDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Select View
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="viewDropdown">
+                                        <li><a class="dropdown-item" href="#" onclick="showView('overview')">Overview</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="showView('goals')">Goals</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="showView('budgets')">Budgets</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="showView('todos')">ToDo</a></li>
+                                    </ul>
+                                </div>
+
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <p class="mt-3">This month you completed</p>
+                    <div class="row h-100">
                         <div class="col-md-4">
-                            <h6>Goals</h6>
-                            <div class="progress mb-2">
-                                <div class="progress-bar bg-success" role="progressbar" style="width: @Model.GoalsProgress%" aria-valuenow="@Model.GoalsProgress" aria-valuemin="0" aria-valuemax="100">@Model.GoalsProgress%</div>
-                            </div>
+                            <h6 class="fs-2">Goals</h6>
+                            <div class="h-100 mt-3 mx-5 fs-1">@Model.GoalsCompletedThisMonth</div>
                         </div>
                         <div class="col-md-4">
-                            <h6>ToDos</h6>
-                            <div class="progress mb-2">
-                                <div class="progress-bar bg-info" role="progressbar" style="width: @Model.ToDosProgress%" aria-valuenow="@Model.ToDosProgress" aria-valuemin="0" aria-valuemax="100">@Model.ToDosProgress%</div>
-                            </div>
+                            <h6 class="fs-2">ToDos</h6>
+                            <div class="h-100 mt-3 mx-5 fs-1">@Model.ToDosCompletedThisMonth</div>
                         </div>
                         <div class="col-md-4">
-                            <h6>Budgets</h6>
-                            <div class="progress mb-2">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: @Model.BudgetsProgress%" aria-valuenow="@Model.BudgetsProgress" aria-valuemin="0" aria-valuemax="100">@Model.BudgetsProgress%</div>
-                            </div>
+                            <h6 class="fs-2">Budgets</h6>
+                            <div class="h-100 mt-3 mx-5 fs-1">@Model.BudgetsCompletedThisMonth</div>
                         </div>
                     </div>
-                    <div class="mt-auto">
-                        <a href="#" class="card-link">View Details</a>
-                    </div>
-                </div>
+                </div>                
             </div>
             <!-- Budget -->
-            <div class="card text-black bg-info-subtle mb-4" style="height:350px;">
-                <div class="card-body d-flex flex-column">
-                    <h4 class="card-title">Budgets</h4>
-                    <div style="max-height: 200px; overflow-y: auto;">
-                        @foreach (var budget in Model.BudgetItems.Take(3))
+            <div class="card text-black bg-info-subtle mb-4 rounded-4 shadow" style="height:350px;">
+                <div class="card-body d-flex flex-column rounded-4">
+                    <h4 class="card-title fw-bold">Budgets</h4>
+                    <div style="max-height: 225px; overflow-y: auto;">
+                        @foreach (var budget in Model.BudgetItems)
                         {
                             <div class="card text-black bg-info mb-4 p-3">
                                 <div class="container">
@@ -92,11 +87,11 @@
                 </div>
             </div>
             <!-- Goals -->
-            <div class="card text-black bg-info-subtle mb-4" style="height:350px;">
-                <div class="card-body d-flex flex-column">
-                    <h4 class="card-title">Goals</h4>
-                    <div style="max-height: 200px; overflow-y: auto;">
-                        @foreach (var goal in Model.Goals.Take(3))
+            <div class="card text-black bg-info-subtle mb-4 rounded-4 shadow" style="height:350px;">
+                <div class="card-body d-flex flex-column rounded-4">
+                    <h4 class="card-title fw-bold">Goals</h4>
+                    <div style="max-height: 225px; overflow-y: auto;">
+                        @foreach (var goal in Model.Goals)
                         {
                             <div class="card text-black bg-info-subtle mb-4 p-3">
                                 <div class="container">
@@ -127,11 +122,11 @@
                 </div>
             </div>
             <!-- ToDo -->
-            <div class="card text-black bg-info-subtle mb-4" style="height:350px;">
-                <div class="card-body d-flex flex-column">
-                    <h4 class="card-title">ToDo</h4>
-                    <div style="max-height: 200px; overflow-y: auto;">
-                        @foreach (var toDo in Model.ToDoItems.Take(3))
+            <div class="card text-black bg-info-subtle mb-4 rounded-4 shadow" style="height:350px;">
+                <div class="card-body d-flex flex-column rounded-4">
+                    <h4 class="card-title fw-bold">ToDos</h4>
+                    <div style="max-height: 225px; overflow-y: auto;">
+                        @foreach (var toDo in Model.ToDoItems)
                         {
                             <div class="card text-black bg-info-subtle mb-4 p-3">
                                 <div class="container">
@@ -158,9 +153,9 @@
         <!-- Second column -->
         <div class="col-lg-3">
             <!-- Calendar -->
-            <div class="card text-black bg-info-subtle mb-4 h-100">
-                <div class="card-body">
-                    <h4 class="card-title text-center">Upcoming</h4>
+            <div class="card text-black bg-info-subtle mb-4 h-100 rounded-4 shadow">
+                <div class="card-body rounded-4">
+                    <h4 class="card-title text-center fw-bold">Upcoming</h4>
                     <div class="container h-100">
                         <div class="row h-100">
                             <div class="col align-content-center text-center">

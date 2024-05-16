@@ -12,7 +12,7 @@ using PulseWeb.Data;
 namespace PulseWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240513045117_InitialMigration")]
+    [Migration("20240516050450_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -108,8 +108,8 @@ namespace PulseWeb.Migrations
                     b.Property<DateTime>("DueTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDone")
-                        .HasColumnType("bit");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()

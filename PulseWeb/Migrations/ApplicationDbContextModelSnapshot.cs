@@ -105,8 +105,8 @@ namespace PulseWeb.Migrations
                     b.Property<DateTime>("DueTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("IsDone")
-                        .HasColumnType("bit");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<string>("Title")
                         .IsRequired()

@@ -52,10 +52,7 @@
                             @obj.DueDate.ToString("MMM dd, yyyy")
                         </td>
                         <td>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="@obj.Id">
-                                <label class="form-check-label" asp-for="@obj.IsDone"></label>
-                            </div>
+                            @obj.Status.ToString().Replace("InProgress", "In Progress")
                         </td>
                         <td>
                             <button id="btnGroupDrop2" type="button" class="btn" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-three-dots-vertical"></i></button>
