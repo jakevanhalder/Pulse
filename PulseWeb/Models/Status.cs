@@ -5,6 +5,7 @@ namespace PulseWeb.Models
     public enum Status
     {
         InProgress,
-        Completed
+        Completed,
+        OverDue
     }
 }
