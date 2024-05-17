@@ -15,8 +15,11 @@ namespace PulseWeb.Controllers
             _goalRepository = goalRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string view)
         {
+            // Store the selected view in ViewBag for use in the view
+            ViewBag.SelectedView = view ?? "In Progress"; // Default to In Progress
+
             List<Goal> objGoalList = _goalRepository.GetAll().ToList();
             return View(objGoalList);
         }

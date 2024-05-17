@@ -20,17 +20,21 @@
                         <div class="col">
                             @{
                                 string overviewTitle = "Overview";
+                                string buttonTitle = "Overview";
                                 if (ViewBag.SelectedView == "goals")
                                 {
                                     overviewTitle = "Goal Overview";
+                                    buttonTitle = "Goals";
                                 }
                                 else if (ViewBag.SelectedView == "budgets")
                                 {
                                     overviewTitle = "Budget Overview";
+                                    buttonTitle = "Budgets";
                                 }
                                 else if (ViewBag.SelectedView == "todos")
                                 {
                                     overviewTitle = "ToDo Overview";
+                                    buttonTitle = "ToDo";
                                 }
                             }
                             <h4 class="card-title fw-bold">@overviewTitle</h4>
@@ -39,7 +43,7 @@
                             <div class="float-end">
                                 <div class="dropdown">
                                     <button class="btn btn-primary dropdown-toggle" type="button" id="viewDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Select View
+                                        @buttonTitle
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="viewDropdown">
                                         <li><a class="dropdown-item" href="@Url.Action("Index", "Home", new { view = "overview" })">Overview</a></li>

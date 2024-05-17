@@ -21,8 +21,11 @@ namespace PulseWeb.Controllers
         }
 
         // GET: Budget
-        public IActionResult Index()
+        public IActionResult Index(string view)
         {
+            // Store the selected view in ViewBag for use in the view
+            ViewBag.SelectedView = view ?? "In Progress"; // Default to In Progress
+
             List<BudgetItem> objBudgetList = _budgetRepository.GetAll().ToList();
             return View(objBudgetList);
         }
