@@ -19,7 +19,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarColor01">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
@@ -32,7 +32,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-controller="Budget" asp-action="Index">Budgeting</a>
                         </li>
-                        <li class="nav-item dropdown" data-bs-theme="light">
+                        @* <li class="nav-item dropdown" data-bs-theme="light">
                             <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
                             <div class="dropdown-menu">
                                 <a asp-controller="Account" asp-action="Index" class="dropdown-item">Account</a>
@@ -40,9 +40,9 @@
                                 <div class="dropdown-divider"></div>
                                 <a asp-controller="Account" asp-action="Logout" class="dropdown-item text-danger">Logout</a>
                             </div>
-                        </li>
-                        
+                        </li>  *@                       
                     </ul>
+                    <partial name="_LoginPartial" />
             </div>
         </nav>
     </header>
