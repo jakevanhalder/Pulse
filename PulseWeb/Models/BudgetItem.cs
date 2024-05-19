@@ -17,6 +17,7 @@ namespace PulseWeb.Models
 
         [Required]
         [DataType(DataType.Currency)]
+        [Range(0, double.MaxValue, ErrorMessage = "Amount must be equal to or above 0.")]
         public decimal Amount { get; set; }
 
         [Required]

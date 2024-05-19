@@ -5,8 +5,6 @@ using PulseWeb.Repository.IRepository;
 using PulseWeb.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<PulseWebContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("PulseWebContext") ?? throw new InvalidOperationException("Connection string 'PulseWebContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

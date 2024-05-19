@@ -28,20 +28,22 @@
         private int CalculateGoalsCompletedThisMonth()
         {
             var startOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            // var endOfMonth = new DateTime()
-            return Goals?.Count(g => g.Status == Status.Completed && g.DueDate >= startOfMonth && g.DueDate <= DateTime.Today) ?? 0;
+            var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1); // Last day of the current month
+            return Goals?.Count(g => g.Status == Status.Completed && g.DueDate >= startOfMonth && g.DueDate <= endOfMonth) ?? 0;
         }
 
         private int CalculateToDosCompletedThisMonth()
         {
             var startOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            return ToDoItems?.Count(t => t.Status == Status.Completed && t.DueDate >= startOfMonth && t.DueDate <= DateTime.Today) ?? 0;
+            var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1); // Last day of the current month
+            return ToDoItems?.Count(t => t.Status == Status.Completed && t.DueDate >= startOfMonth && t.DueDate <= endOfMonth) ?? 0;
         }
 
         private int CalculateBudgetsCompletedThisMonth()
         {
             var startOfMonth = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
-            return BudgetItems?.Count(b => b.Amount <= 0 && b.Date >= startOfMonth && b.Date <= DateTime.Today) ?? 0;
+            var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1); // Last day of the current month
+            return BudgetItems?.Count(b => b.Amount <= 0 && b.Date >= startOfMonth && b.Date <= endOfMonth) ?? 0;
         }
 
         // Properties to calculate in progress, completed, and overdue items for the charts

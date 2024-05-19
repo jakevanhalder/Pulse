@@ -73,13 +73,8 @@ namespace PulseWeb.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Title,Description,IsDone,DueDate")] ToDoItem toDoItem)
+        public IActionResult Edit(ToDoItem toDoItem)
         {
-            if (id != toDoItem.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 _toDoRepository.Update(toDoItem);

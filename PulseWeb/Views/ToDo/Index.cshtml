@@ -13,8 +13,8 @@
     </div>
     <br />
 
-    <div class="table-responsive">
-        <table class="table table-borderless table-striped align-middle" style="width:100%;overflow-y:auto;max-height:500px;min-height:150px;">
+    <div class="table-responsive" style="min-height:150px;">
+        <table class="table table-borderless table-striped align-middle" style="width:100%;overflow-y:auto;max-height:500px;">
             <thead>
                 <tr>
                     <th style="padding: 10px;">
@@ -41,10 +41,10 @@
                             }
                         }
                         <div class="dropdown">
-                            <span class="dropdown-toggle" id="GoalTableDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+                            <span class="dropdown-toggle" id="ToDoTableDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="cursor:pointer;">
                                 @textTitle
                             </span>
-                            <ul class="dropdown-menu" aria-labelledby="GoalTableDropdown">
+                            <ul class="dropdown-menu" aria-labelledby="ToDoTableDropdown">
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "ToDo", new { view = "In Progress" })">In Progress</a></li>
                                 <li><a class="dropdown-item" href="@Url.Action("Index", "ToDo", new { view = "Completed" })">Completed</a></li>
                             </ul>
@@ -84,7 +84,10 @@
                                 </td>
                             </tr>
                         }
-                        else if (obj.Status == Status.Completed)
+                    }
+                    else if (ViewBag.SelectedView == "Completed")
+                    {
+                        if (obj.Status == Status.Completed)
                         {
                             <tr class="table-info" style="padding: 10px;">
                                 <td>
