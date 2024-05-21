@@ -21,16 +21,16 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-area="User" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Goal" asp-action="Index">Goals</a>
+                            <a class="nav-link text-light" asp-area="User" asp-controller="Goal" asp-action="Index">Goals</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="ToDo" asp-action="Index">Todo List</a>
+                            <a class="nav-link text-light" asp-area="User" asp-controller="ToDo" asp-action="Index">Todo List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Budget" asp-action="Index">Budgeting</a>
+                            <a class="nav-link text-light" asp-area="User" asp-controller="Budget" asp-action="Index">Budgeting</a>
                         </li>
                         @* <li class="nav-item dropdown" data-bs-theme="light">
                             <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Profile</a>
@@ -43,6 +43,7 @@
                         </li>  *@                       
                     </ul>
                     <partial name="_LoginPartial" />
+                </div>
             </div>
         </nav>
     </header>

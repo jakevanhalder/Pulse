@@ -9,8 +9,9 @@ using PulseWeb.Data;
 using PulseWeb.Models;
 using PulseWeb.Repository.IRepository;
 
-namespace PulseWeb.Controllers
+namespace PulseWeb.Areas.User.Controllers
 {
+    [Area("User")]
     public class BudgetController : Controller
     {
         private readonly IBudgetRepository _budgetRepository;
@@ -60,7 +61,7 @@ namespace PulseWeb.Controllers
                 return NotFound();
             }
 
-            var budgetItem = _budgetRepository.Get(u=>u.Id==id);
+            var budgetItem = _budgetRepository.Get(u => u.Id == id);
             if (budgetItem == null)
             {
                 return NotFound();

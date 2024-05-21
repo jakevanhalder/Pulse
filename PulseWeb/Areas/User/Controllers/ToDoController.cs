@@ -9,8 +9,9 @@ using PulseWeb.Data;
 using PulseWeb.Models;
 using PulseWeb.Repository.IRepository;
 
-namespace PulseWeb.Controllers
+namespace PulseWeb.Areas.User.Controllers
 {
+    [Area("User")]
     public class ToDoController : Controller
     {
         private readonly IToDoRepository _toDoRepository;

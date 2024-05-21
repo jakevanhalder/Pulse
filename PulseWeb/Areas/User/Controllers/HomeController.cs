@@ -5,8 +5,9 @@ using PulseWeb.Repository.IRepository;
 using System.Diagnostics;
 using System.Globalization;
 
-namespace PulseWeb.Controllers
+namespace PulseWeb.Areas.User.Controllers
 {
+    [Area("User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -31,7 +32,7 @@ namespace PulseWeb.Controllers
             DateTime today = DateTime.Today;
 
             // Calculate the start and end dates of the current week (Sunday to Monday)
-            DateTime sunday = today.AddDays(-(int)today.DayOfWeek);      
+            DateTime sunday = today.AddDays(-(int)today.DayOfWeek);
             DateTime saturday = sunday.AddDays(6);
 
             // Retrieve upcoming goals, todos, and budgets for the current week

@@ -4,8 +4,9 @@ using PulseWeb.Models;
 using PulseWeb.Repository;
 using PulseWeb.Repository.IRepository;
 
-namespace PulseWeb.Controllers
+namespace PulseWeb.Areas.User.Controllers
 {
+    [Area("User")]
     public class GoalController : Controller
     {
         private readonly IGoalRepository _goalRepository;
@@ -27,7 +28,7 @@ namespace PulseWeb.Controllers
         // GET
         public IActionResult Create()
         {
-           return View();
+            return View();
         }
 
         // POST
