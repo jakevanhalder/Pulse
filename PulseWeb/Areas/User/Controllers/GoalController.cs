@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using PulseWeb.Data;
 using PulseWeb.Models;
 using PulseWeb.Repository;
 using PulseWeb.Repository.IRepository;
+using PulseWeb.Utility;
 
 namespace PulseWeb.Areas.User.Controllers
 {
     [Area("User")]
+    [Authorize(Roles = SD.Role_User)]
     public class GoalController : Controller
     {
         private readonly IGoalRepository _goalRepository;

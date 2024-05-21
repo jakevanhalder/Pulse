@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PulseWeb.Models;
 using PulseWeb.Repository;
 using PulseWeb.Repository.IRepository;
+using PulseWeb.Utility;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -24,6 +26,12 @@ namespace PulseWeb.Areas.User.Controllers
         }
 
         public IActionResult Index(string view)
+        {
+            return View();
+        }
+
+        [Authorize(Roles = SD.Role_User)]
+        public IActionResult UserIndex(string view)
         {
             // Store the selected view in ViewBag for use in the view
             ViewBag.SelectedView = view ?? "overview"; // Default to overview if no view is selected
@@ -63,11 +71,13 @@ namespace PulseWeb.Areas.User.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = SD.Role_User)]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [Authorize(Roles = SD.Role_User)]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
