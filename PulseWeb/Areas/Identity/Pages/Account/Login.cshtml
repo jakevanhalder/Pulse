@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <section>
                     <form id="account" class="row" method="post">
-                        <h3 class="border-bottom pb-3 mb-4 text-secondary text-center">Use an account to log in.</h3>
+                        <h3 class="pb-3 mb-4 text-secondary text-center">Use an account to log in.</h3>
                         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                         <div class="form-floating mb-3">
                             <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" placeholder="name@example.com" />
@@ -52,7 +52,7 @@
             <div class="col-md-12">
                 <section>
                     <p class="divider-text d-flex pt-3">or</p>
-                    <h3>Use another service to log in.</h3>
+                    <h3 class="pb-3 mb-2 text-secondary text-center">Use another service to log in.</h3>
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)
                         {
@@ -68,11 +68,23 @@
                         else
                         {
                             <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                                <div>
+                                <div class="row">
                                     <p>
                                         @foreach (var provider in Model.ExternalLogins!)
                                         {
-                                            <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                            switch (@provider.DisplayName)
+                                            {
+                                                case "Facebook":
+                                                    <div class="col-md-6 mb-3">
+                                                        <button type="submit" class="btn facebookButton w-100" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="bi bi-meta"></i> @provider.DisplayName</button>
+                                                    </div>
+                                                    break;
+                                                case "Microsoft":
+                                                    <div class="col-md-6 mb-3">
+                                                        <button type="submit" class="btn microsoftButton w-100" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="bi bi-microsoft"></i> @provider.DisplayName</button>
+                                                    </div>
+                                                    break;
+                                            }
                                         }
                                     </p>
                                 </div>
