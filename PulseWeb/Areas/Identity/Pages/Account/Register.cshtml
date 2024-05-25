@@ -38,11 +38,16 @@
                     <div class="col-12">
                         <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-info">Register</button>
                     </div>
+                    <div class="pt-4">
+                        <p>
+                            Already have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Login.</a>
+                        </p>
+                    </div>
                 </form>
             </div>
             <div class="col-md-12">
                 <section>
-                    <p class="divider-text d-flex pt-3">or</p>
+                    <p class="divider-text d-flex">or</p>
                     <h3 class="pb-3 text-secondary text-center">Use another service to register.</h3>
                     @{
                         if ((Model.ExternalLogins?.Count ?? 0) == 0)

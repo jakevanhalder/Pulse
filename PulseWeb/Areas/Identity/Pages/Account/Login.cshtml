@@ -35,12 +35,12 @@
                         <div class="col-12">
                             <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-info">Log in</button>
                         </div>
-                        <div>
+                        <div class="row">
                             <p>
                                 <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                             </p>
                             <p>
-                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                Don't have an account? <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register.</a>
                             </p>
                             <p>
                                 <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>

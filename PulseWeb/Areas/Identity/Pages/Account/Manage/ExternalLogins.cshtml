@@ -45,7 +45,19 @@
             <p>
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    <button id="@($"link-login-button-{provider.Name}")" type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                    switch (@provider.DisplayName)
+                    {
+                        case "Facebook":
+                            <div class="col-md-6 mb-3">
+                                <button type="submit" class="btn facebookButton w-100" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="bi bi-meta"></i> @provider.DisplayName</button>
+                            </div>
+                            break;
+                        case "Microsoft":
+                            <div class="col-md-6 mb-3">
+                                <button type="submit" class="btn microsoftButton w-100" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account"><i class="bi bi-microsoft"></i> @provider.DisplayName</button>
+                            </div>
+                            break;
+                    }
                 }
             </p>
         </div>

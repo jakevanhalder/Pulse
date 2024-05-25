@@ -25,7 +25,7 @@ namespace PulseWeb.Areas.User.Controllers
             _budgetRepository = budgetRepository;
         }
 
-        public IActionResult Index(string view)
+        public IActionResult Index()
         {
             return View();
         }
