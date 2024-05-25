@@ -1,52 +1,54 @@
 ﻿@model Goal
 
-<form method="post" asp-action="DeletePOST">
-    <input asp-for="Id" hidden />
-    <div class="border p-3 mt-4 bg-primary-subtle">
-        <div class="row pb-2">
-            <h2 class="text-primary">Delete Goal</h2>
-            <hr />
+<div class="container">
+    <form method="post" asp-action="DeletePOST">
+        <input asp-for="Id" hidden />
+        <div class="border p-3 mt-4 bg-primary-subtle">
+            <div class="row pb-2">
+                <h2 class="text-primary">Delete Goal</h2>
+                <hr />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Title"></label>
+                <input asp-for="Title" disabled class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description"></label>
+                <input asp-for="Description" disabled class="form-control" />
+            </div>
+            <div class="mb-3">
+                <label asp-for="DueTime"></label>
+                <input type="time" asp-for="DueTime" disabled class="form-control" />
+                <span asp-validation-for="DueTime" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DueDate"></label>
+                <input type="date" asp-for="DueDate" disabled class="form-control" />
+                <span asp-validation-for="DueDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Priority"></label>
+                <select asp-for="Priority" disabled class="form-control">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Status"></label>
+                <select asp-for="Status" disabled class="form-control">
+                    <option value="InProgress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
+            </div>
+            <a asp-controller="Goal" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                Back
+            </a>
+            <button type="submit" class="btn btn-outline-danger btn-danger text-white fw-bold" style="width:150px">Delete</button>
         </div>
-        <div class="mb-3">
-            <label asp-for="Title"></label>
-            <input asp-for="Title" disabled class="form-control" />
-            <span asp-validation-for="Title" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Description"></label>
-            <input asp-for="Description" disabled class="form-control" />
-        </div>
-        <div class="mb-3">
-            <label asp-for="DueTime"></label>
-            <input type="time" asp-for="DueTime" disabled class="form-control" />
-            <span asp-validation-for="DueTime" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="DueDate"></label>
-            <input type="date" asp-for="DueDate" disabled class="form-control" />
-            <span asp-validation-for="DueDate" class="text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Priority"></label>
-            <select asp-for="Priority" disabled class="form-control">
-                <option value="Low">Low</option>
-                <option value="Medium">Medium</option>
-                <option value="High">High</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Status"></label>
-            <select asp-for="Status" disabled class="form-control">
-                <option value="InProgress">In Progress</option>
-                <option value="Completed">Completed</option>
-            </select>
-        </div>
-        <a asp-controller="Goal" asp-action="Index" class="btn btn-secondary" style="width:150px">
-            Back
-        </a>
-        <button type="submit" class="btn btn-outline-danger btn-danger text-white fw-bold" style="width:150px">Delete</button>        
-    </div>
-</form>
+    </form>
+</div>
 
 @section Scripts {
     @{
