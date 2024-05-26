@@ -41,7 +41,10 @@
                         </div>
                         <div class="pt-4">
                             <p>
-                                Already have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Login.</a>
+                                Already have an account? <a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl">Login</a>.
+                            </p>
+                            <p>
+                                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                             </p>
                         </div>
                     </form>

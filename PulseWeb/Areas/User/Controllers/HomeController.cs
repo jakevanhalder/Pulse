@@ -71,7 +71,6 @@ namespace PulseWeb.Areas.User.Controllers
             return View(viewModel);
         }
 
-        [Authorize(Roles = SD.Role_User)]
         public IActionResult Privacy()
         {
             return View();
