@@ -31,10 +31,6 @@ body {
   margin-bottom: 60px;
 }
 
-*::-webkit-scrollbar {
-    display: none;
-}
-
 .facebookButton {
     background-color: #1877F2;
     color: white;

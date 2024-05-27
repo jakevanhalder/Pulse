@@ -12,8 +12,8 @@ using PulseWeb.Data;
 namespace PulseWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240521055751_fixPartialLogin")]
-    partial class fixPartialLogin
+    [Migration("20240526205210_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
