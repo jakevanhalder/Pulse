@@ -12,7 +12,7 @@ using PulseWeb.Data;
 namespace PulseWeb.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240526205210_InitialMigration")]
+    [Migration("20240529033158_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
