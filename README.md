@@ -11,11 +11,11 @@ Pulse is a C# ASP.NET Core MVC application developed to help users focus on impo
 
 ## Requirements
 
-- .NET 8 SDK (Lower versions may work I just don't know/haven't checked)
-- Visual Studio Code (I used the 2022 version. Other IDEs are fine but if you are developing ASP.NET Core applications I highly recommend using Visual Studio Code)
-- A SendGrid account for email functionalities (Required for now to login and see the full application. I'll fix this in the next commit)
-- Microsoft and Facebook developer accounts for external login
-- Local SQL Server instance. Download SQL Server Management Studio (SSMS) to make your life easier
+- [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (Lower versions may work I just don't know/haven't checked)
+- [Visual Studio Code](https://visualstudio.microsoft.com/vs/community/) (I used the 2022 version. Other IDEs are fine but if you are developing ASP.NET Core applications I highly recommend using Visual Studio Code)
+- A [SendGrid](https://sendgrid.com/) account for email functionalities (Required for now to login and see the full application. I'll fix this in the next commit)
+- [Microsoft](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) and [Facebook](https://developers.facebook.com/) developer accounts for external login
+- Local SQL Server instance. Download [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16) to make your life easier
 
 ## Installation
 
@@ -56,6 +56,20 @@ Pulse is a C# ASP.NET Core MVC application developed to help users focus on impo
 4. Navigate to Chrome://flags/ #allow-insecure-localhost if you're using chrome to debug or edge://flags/#allow-insecure-localhost if you're on edge and enable these options
 
 5. Build the project with ctrl+f5. Some dialogs may pop up asking you if you trust ssl certificates. You can read through it, just make sure you press yes.
+
+6. (Optional) If you don't want to deal with the external login functionalities just comment out the following code in `program.cs`. As of right now you still need a sendgrid api key to access the content behind the login/register but I'll make a commit soon to fix that:
+
+   ```bash
+   builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
+   {
+       facebookOptions.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+       facebookOptions.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+   }).AddMicrosoftAccount(microsoftOptions =>
+   {
+       microsoftOptions.ClientId = builder.Configuration["Authentication:Microsoft:ClientId"];
+       microsoftOptions.ClientSecret = builder.Configuration["Authentication:Microsoft:ClientSecret"];
+   });
+   ```
 
 # License
 
