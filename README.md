@@ -14,7 +14,7 @@ Pulse is a C# ASP.NET Core MVC application developed to help users focus on impo
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) (Lower versions may work I just don't know/haven't checked)
 - [Visual Studio Code](https://visualstudio.microsoft.com/vs/community/) (I used the 2022 version. Other IDEs are fine but if you are developing ASP.NET Core applications I highly recommend using Visual Studio Code)
 - A [SendGrid](https://sendgrid.com/) account for email functionalities (Required for now to login and see the full application. I'll fix this in the next commit)
-- [Microsoft](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) and [Facebook](https://developers.facebook.com/) developer accounts for external login
+- [Microsoft](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade) and [Facebook](https://developers.facebook.com/) developer accounts for external login (Tutorials can be found here [Microsoft External Login](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/microsoft-logins?view=aspnetcore-8.0), or [Facebook External Login](https://learn.microsoft.com/en-us/aspnet/core/security/authentication/social/facebook-logins?view=aspnetcore-8.0)
 - Local SQL Server instance. Download [SQL Server Management Studio (SSMS)](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16) to make your life easier
 
 ## Installation
