@@ -43,7 +43,7 @@ Pulse is a C# ASP.NET Core MVC application developed to help users focus on impo
 2. Set the secrets:
 
   ```bash
-  dotnet user-secrets set "SendGrid:ApiKey" "<YOUR_SENDGRID_API_KEY>"
+  dotnet user-secrets set "SendGrid:SecretKey" "<YOUR_SENDGRID_API_KEY>"
   dotnet user-secrets set "Authentication:Microsoft:ClientId" "<YOUR_MICROSOFT_CLIENT_ID>"
   dotnet user-secrets set "Authentication:Microsoft:ClientSecret" "<YOUR_MICROSOFT_CLIENT_SECRET>"
   dotnet user-secrets set "Authentication:Facebook:AppId" "<YOUR_FACEBOOK_APP_ID>"
