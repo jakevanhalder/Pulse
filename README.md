@@ -48,7 +48,6 @@ Pulse is a C# ASP.NET Core MVC application developed to help users focus on impo
   dotnet user-secrets set "Authentication:Microsoft:ClientSecret" "<YOUR_MICROSOFT_CLIENT_SECRET>"
   dotnet user-secrets set "Authentication:Facebook:AppId" "<YOUR_FACEBOOK_APP_ID>"
   dotnet user-secrets set "Authentication:Facebook:AppSecret" "<YOUR_FACEBOOK_APP_SECRET>"
-  dotnet user-secrets set "ConnectionStrings:DefaultConnection" "Server=<YOUR_SERVER>;Database=<YOUR_DATABASE>;User Id=<YOUR_USER_ID>;Password=<YOUR_PASSWORD>;"
   ```
 
 3. Update `program.cs` files DefaultConnection to your local SQL Server instances connection string
